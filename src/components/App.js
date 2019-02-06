@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 import Loader from "./Loader";
 import "./App.css";
 import Strapi from "strapi-sdk-javascript/build/main";
-const apiUrl =  process.env.NODE_ENV === 'production' ? 'https://austin-brewhaha-server.herokuapp.com/' : "http://localhost:1337";
+const apiUrl =  window.location.hostname !== 'localhost' ? 'https://austin-brewhaha-server.herokuapp.com/' : "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
 
 //stupid save
