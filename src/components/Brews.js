@@ -16,7 +16,7 @@ class Brews extends React.Component {
 
   async componentDidMount() {
     try {
-      const response = await strapi.request("POST", "/graphql", {
+      const response = await strapi.request("POST", "https://austin-brewhaha-server.herokuapp.com/graphql", {
         data: {
           query: `query {
           brand(id: "${this.props.match.params.brandId}") {
