@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 import Loader from "./Loader";
 import "./App.css";
 import Strapi from "strapi-sdk-javascript/build/main";
-const apiUrl = process.env.API_URL || "http://localhost:1337";
+const apiUrl =  process.env.NODE_ENV === 'production' ? 'https://austin-brewhaha-server.herokuapp.com/' : "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
 
 //stupid save
@@ -28,7 +28,7 @@ class App extends Component {
 
   async componentDidMount() {
     try {
-      const response = await strapi.request("POST", "https://austin-brewhaha-server.herokuapp.com/graphql", {
+      const response = await strapi.request("POST", apiUrl  + "/graphql", {
         data: {
           query: `query {
             brands {
@@ -68,7 +68,7 @@ class App extends Component {
   //SEARCH FOR BRAND NAMES
   //Get search to return values in the graphql format below
   searchBrands = async () => {
-    const response = await strapi.request('POST', 'https://austin-brewhaha-server.herokuapp.com/graphql', {
+    const response = await strapi.request('POST', apiUrl  + "/graphql", {
       data: {
         query: `query	{
           brands(where: {
